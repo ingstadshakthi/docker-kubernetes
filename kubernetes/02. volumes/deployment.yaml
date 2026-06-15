@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: story-deployment
+spec:
+  replicas: 
+  selector:
+    matchLabels:
+      app: story
+  template:
+    metadata:
+      labels:
+        app: story
+    spec:
+      containers:
+        - name: story
+          image: shakthivels/kub-data-demo:1
+          imagePullPolicy: Always
+          volumeMounts:
+            - name: story-volume
+              mountPath: /app/story
+      volumes:
+        - name: story-volume
+          persistentVolumeClaim:
+            claimName: host-pvc
+          # emptyDir: {}
+          # hostPath:
+          #   path: /data
+          #   type: DirectoryOrCreate
