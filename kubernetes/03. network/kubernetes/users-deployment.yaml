@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: users-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: users
+  template:
+    metadata:
+      labels:
+        app: users
+    spec:
+      containers:
+        - name: users
+          image: shakthivels/kub-demo-users
+          imagePullPolicy: Always
+          env:
+            - name: AUTH_ADDRESS
+              value: localhost
+        - name: auth
+          image: shakthivels/kub-demo-auth
+          imagePullPolicy: Always
