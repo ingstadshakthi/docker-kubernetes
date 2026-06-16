@@ -18,7 +18,4 @@ spec:
           imagePullPolicy: Always
           env:
             - name: AUTH_ADDRESS
-              value: localhost
-        - name: auth
-          image: shakthivels/kub-demo-auth
-          imagePullPolicy: Always
+              value: auth
